@@ -1,5 +1,10 @@
 # Implementation changes
 
+## Android CI failure and warning fixes
+- Confirmed from the public GitHub Actions run API that the failed step was `Set up Android SDK`; SDK package installation and Gradle compilation were skipped. The run annotations also showed Node 20 action warnings and the future ubuntu-latest migration notice.
+- Updated checkout/setup-java/setup-android/Gradle setup/artifact upload to current major releases and pinned the runner to Ubuntu 24.04. This moves JavaScript actions to Node 24 and removes reliance on a moving runner label.
+- Updated Android CI integration assertions to guard the runner and action versions. An actual build still needs a new GitHub Actions run; Android SDK and Gradle are not available locally.
+
 ## Android wrapper
 - Added a standalone Kotlin/Gradle Android project that wraps the web game in a full-screen WebView using AndroidX `WebViewAssetLoader` on its app-local HTTPS origin. File access, cleartext traffic, and mixed content remain disabled.
 - Added a `preBuild` Gradle sync task to package the current HTML, CSS, JavaScript, manifest, and icons directly into the APK, keeping Android content aligned with the web app and available offline.

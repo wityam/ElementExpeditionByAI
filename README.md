@@ -42,7 +42,7 @@ To build and download a test APK without installing Android Studio or the Androi
 3. Open the successful workflow run and download the `element-expedition-android-debug` artifact.
 4. Unzip the artifact and install `app-debug.apk` on an Android device or emulator. You may need to allow installation from that download source.
 
-This workflow produces an unsigned **debug APK** for testing, not a Play Store release. A release build should use a securely stored signing key and separate release workflow. Android project settings are in `android/`; CI runs `gradle -p android :app:assembleDebug` using JDK 17 and Gradle 8.10.2.
+This workflow produces an unsigned **debug APK** for testing, not a Play Store release. A release build should use a securely stored signing key and separate release workflow. Android project settings are in `android/`; CI runs `gradle -p android :app:assembleDebug` using JDK 17, Gradle 8.10.2, Android API 35, and Ubuntu 24.04.
 
 ## Install and offline behavior
 

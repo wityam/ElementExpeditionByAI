@@ -22,10 +22,16 @@ assert.match(activity, /https:\/\/appassets\.androidplatform\.net\/assets\/index
 assert.match(activity, /settings\.javaScriptEnabled = true/);
 assert.match(activity, /settings\.allowFileAccess = false/);
 assert.match(activity, /MIXED_CONTENT_NEVER_ALLOW/);
+assert.match(workflow, /runs-on:\s*ubuntu-24\.04/);
+assert.match(workflow, /actions\/checkout@v7/);
+assert.match(workflow, /actions\/setup-java@v6/);
+assert.match(workflow, /android-actions\/setup-android@v4/);
+assert.match(workflow, /gradle\/actions\/setup-gradle@v6/);
+assert.match(workflow, /actions\/upload-artifact@v7/);
 assert.match(workflow, /platforms;android-35/);
 assert.match(workflow, /build-tools;35\.0\.0/);
 assert.match(workflow, /gradle --no-daemon -p android :app:assembleDebug/);
-assert.match(workflow, /actions\/upload-artifact@v4/);
+assert.match(workflow, /actions\/upload-artifact@v7/);
 for (const density of ['mdpi', 'hdpi', 'xhdpi', 'xxhdpi', 'xxxhdpi']) {
   const icon = path.join(root, 'android/app/src/main/res', `mipmap-${density}`, 'ic_launcher.png');
   assert.ok(fs.existsSync(icon), `Android launcher icon for ${density} exists`);
