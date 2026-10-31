@@ -1,5 +1,9 @@
 # Implementation changes
 
+## Android JVM target mismatch fix
+- Fixed `compileDebugKotlin` compatibility failure by explicitly targeting Java 17 for both Java source/bytecode and Kotlin bytecode, matching the JDK used in GitHub Actions.
+- Extended the Android integration test to assert matching Java/Kotlin JVM targets. Local Android compilation remains unavailable without SDK/Gradle; CI must confirm the APK build.
+
 ## Android CI failure and warning fixes
 - Confirmed from the public GitHub Actions run API that the failed step was `Set up Android SDK`; SDK package installation and Gradle compilation were skipped. The run annotations also showed Node 20 action warnings and the future ubuntu-latest migration notice.
 - Updated checkout/setup-java/setup-android/Gradle setup/artifact upload to current major releases and pinned the runner to Ubuntu 24.04. This moves JavaScript actions to Node 24 and removes reliance on a moving runner label.

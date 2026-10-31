@@ -15,6 +15,9 @@ for (const asset of requiredWebAssets) assert.ok(gradle.includes(`"${asset}"`), 
 assert.match(gradle, /tasks\.named\("preBuild"\)[\s\S]*dependsOn\(syncWebAssets\)/);
 assert.match(gradle, /compileSdk\s*=\s*35/);
 assert.match(gradle, /minSdk\s*=\s*23/);
+assert.match(gradle, /sourceCompatibility\s*=\s*JavaVersion\.VERSION_17/);
+assert.match(gradle, /targetCompatibility\s*=\s*JavaVersion\.VERSION_17/);
+assert.match(gradle, /jvmTarget\s*=\s*JavaVersion\.VERSION_17\.toString\(\)/);
 assert.match(manifest, /android:exported="true"/);
 assert.match(manifest, /android:icon="@mipmap\/ic_launcher"/);
 assert.match(activity, /WebViewAssetLoader/);
