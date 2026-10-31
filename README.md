@@ -19,6 +19,18 @@ npx serve .
 
 Then open the HTTPS URL it provides, or use a localhost static server. Opening `index.html` directly with `file://` does not enable PWA installation/offline caching.
 
+## Test deployment with GitHub Pages
+
+GitHub Pages supports this static PWA. To publish a test build:
+
+1. Push this repository and the branch you want to test to GitHub.
+2. In the repository, open **Settings → Pages**.
+3. Under **Build and deployment**, choose **Deploy from a branch**.
+4. Select the test branch and the `/(root)` folder, then click **Save**. The app needs no build command.
+5. Wait for the Pages deployment to finish, then open the URL shown on the Pages settings page. For a project repository, it is usually `https://<owner>.github.io/<repository>/`.
+
+The app uses relative URLs and can run from the project subdirectory. GitHub Pages provides HTTPS, which is required for service-worker registration, installation, and offline caching. After the first successful load, test offline mode by disconnecting the network and reloading. When testing updates, increment `CACHE_NAME` in `service-worker.js` before publishing so the service worker replaces its cached app shell.
+
 ## Install and offline behavior
 
 The web app manifest provides standalone display settings and SVG/PNG icons. After the app shell loads, the service worker caches HTML, CSS, JavaScript, manifest, and icons. Navigations use the network first, then the cached app shell when offline; same-origin app resources use cache first and are cached after a successful fetch. A later service-worker version removes older `element-expedition-*` caches.
