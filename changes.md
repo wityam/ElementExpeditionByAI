@@ -13,5 +13,6 @@
 ## Verification adjustments
 - Added a dependency-free Node test harness that simulates the required DOM controls and checks data integrity, session flow, choice uniqueness, scoring, study search, and wrong-answer behavior.
 - Normalized cross-VM arrays in one test assertion with `Array.from`; Node’s strict deep comparison distinguishes arrays with different realm prototypes even when their contents match. This was a test issue, not a game defect.
-- Browser-level visual verification is not included; automated logic and static structure checks are used instead.
 - Final accessibility review moves focus to each view’s heading after navigation (with `tabindex="-1"`), while study search remains one Tab away; automated tests verify all navigation destinations exist.
+- Verified rendering in Firefox headless at desktop (1365×1000) and narrow mobile (390×844) viewport sizes. The settled desktop home screen renders as designed; the mobile view stacks content, keeps both actions accessible, and shows the element tile without horizontal clipping. Animation timing initially caused partial screenshots, so visual captures were repeated with motion disabled in a temporary Firefox profile; no browser-only visual issue was found.
+- Automated logic and static structure tests pass. The game interaction flow was simulated in the Node harness rather than manually exercised in a visible browser session.
