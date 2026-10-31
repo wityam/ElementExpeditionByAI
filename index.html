@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1530">
+  <meta name="description" content="Explore the first 20 elements in a quick, friendly chemistry quiz for grades 7–9.">
+  <title>Element Expedition — Chemistry Quest</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="game.js" defer></script>
+</head>
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="Element Expedition home">
+      <span class="brand-mark" aria-hidden="true">✦</span>
+      <span>ELEMENT <strong>EXPEDITION</strong></span>
+    </a>
+    <div class="top-note"><span class="status-dot" aria-hidden="true"></span> FIELD LAB · LEVEL 01–20</div>
+  </header>
+
+  <main class="app-shell">
+    <section id="home-view" class="view hero-view" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-line"></span> YOUR CHEMISTRY QUEST STARTS HERE</p>
+        <h1 id="hero-title">Meet the building<br>blocks of <span>everything.</span></h1>
+        <p class="hero-description">Take a 10-question expedition through the first 20 elements. Spot the symbols, crack the clues, and build your chemistry confidence.</p>
+        <div class="hero-actions">
+          <button id="start-button" class="button button-primary" type="button">Start expedition <span aria-hidden="true">→</span></button>
+          <button id="home-study-button" class="button button-quiet" type="button">Study the elements</button>
+        </div>
+        <div class="hero-meta"><span>◷ &nbsp;ABOUT 3 MIN</span><span>✳ &nbsp;NO PRESSURE, JUST PRACTICE</span></div>
+      </div>
+      <div class="hero-art" aria-label="Periodic table tile showing oxygen, atomic number 8">
+        <div class="orbit orbit-a"></div><div class="orbit orbit-b"></div>
+        <div class="orbit-dot dot-a"></div><div class="orbit-dot dot-b"></div>
+        <div class="element-tile hero-tile"><span class="tile-number">08</span><span class="tile-symbol">O</span><span class="tile-name">OXYGEN</span><span class="tile-tag">ELEMENT NO. 008</span></div>
+        <span class="float-label label-one">ATOMIC<br>NUMBER</span><span class="float-label label-two">THE AIR<br>WE BREATHE</span>
+        <span class="spark spark-a">✦</span><span class="spark spark-b">·</span>
+      </div>
+      <div class="home-footer"><span>20 ELEMENTS TO DISCOVER</span><span class="footer-line"></span><span>ONE SMALL STEP INTO SCIENCE</span></div>
+    </section>
+
+    <section id="quiz-view" class="view game-view" aria-labelledby="quiz-title" hidden>
+      <div class="game-heading">
+        <div><p class="eyebrow"><span class="eyebrow-line"></span> EXPEDITION IN PROGRESS</p><h1 id="quiz-title" tabindex="-1">Decode the element</h1></div>
+        <button id="quiz-study-button" class="button button-quiet small-button" type="button">Open field guide <span aria-hidden="true">↗</span></button>
+      </div>
+      <div class="stats-row" aria-label="Expedition status">
+        <div class="stat"><span class="stat-label">QUESTION</span><strong id="question-count">01 <i>/ 10</i></strong></div>
+        <div class="progress-wrap"><div class="progress-track" role="progressbar" aria-label="Expedition progress" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0"><span id="progress-fill"></span></div></div>
+        <div class="stat stat-right"><span class="stat-label">SCORE</span><strong id="score-value">000</strong></div>
+      </div>
+      <div class="quiz-card">
+        <div class="clue-kicker"><span class="clue-icon" aria-hidden="true">⌁</span><span id="clue-type">SYMBOL SCAN</span><span class="clue-rule"></span><span id="streak-display" class="streak">✦ &nbsp;0 streak</span></div>
+        <p id="clue-text" class="clue-text">Which element uses the symbol…</p>
+        <div id="clue-prompt" class="clue-prompt" aria-live="polite">O</div>
+        <p class="answer-instruction">CHOOSE THE BEST MATCH</p>
+        <div id="answer-options" class="answer-grid" role="group" aria-label="Answer choices"></div>
+        <div id="feedback" class="feedback" aria-live="polite" aria-atomic="true"></div>
+        <div class="quiz-bottom"><span>TAKE YOUR TIME — LEARNING IS THE WIN</span><button id="next-button" class="button button-primary next-button" type="button" disabled>Lock in answer <span aria-hidden="true">→</span></button></div>
+      </div>
+      <button id="quit-button" class="text-button" type="button">← Leave expedition</button>
+    </section>
+
+    <section id="study-view" class="view study-view" aria-labelledby="study-title" hidden>
+      <div class="game-heading">
+        <div><p class="eyebrow"><span class="eyebrow-line"></span> YOUR FIELD GUIDE</p><h1 id="study-title" tabindex="-1">The first 20 elements</h1></div>
+        <button id="study-back-button" class="button button-quiet small-button" type="button">← Back</button>
+      </div>
+      <p class="study-intro">Search the table, explore the symbols, and notice how each element has its own place.</p>
+      <label class="search-label" for="element-search">Search by name, symbol, or atomic number</label>
+      <input id="element-search" class="search-input" type="search" placeholder="Try “oxygen” or “8”" autocomplete="off">
+      <div id="element-grid" class="element-grid" aria-live="polite"></div>
+      <p id="no-results" class="no-results" hidden>No elements match that search. Try another clue.</p>
+    </section>
+
+    <section id="results-view" class="view results-view" aria-labelledby="results-title" hidden>
+      <div class="results-orbit" aria-hidden="true">✦</div>
+      <p class="eyebrow"><span class="eyebrow-line"></span> EXPEDITION COMPLETE</p>
+      <h1 id="results-title" tabindex="-1">Look at you,<br><span>element explorer.</span></h1>
+      <p id="results-message" class="results-message">You made it through the first 20.</p>
+      <div class="results-stats">
+        <div><span class="stat-label">FINAL SCORE</span><strong id="final-score">0</strong></div>
+        <div><span class="stat-label">CORRECT ANSWERS</span><strong id="final-accuracy">0 / 10</strong></div>
+        <div><span class="stat-label">BEST STREAK</span><strong id="final-streak">0</strong></div>
+      </div>
+      <div class="hero-actions results-actions"><button id="replay-button" class="button button-primary" type="button">Explore again <span aria-hidden="true">↻</span></button><button id="results-study-button" class="button button-quiet" type="button">Review the field guide</button></div>
+    </section>
+  </main>
+  <footer class="page-footer"><span>ELEMENT EXPEDITION</span><span>SCIENCE IS ALL AROUND YOU <span class="footer-star">✦</span></span></footer>
+</body>
+</html>
