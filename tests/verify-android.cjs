@@ -15,6 +15,7 @@ for (const asset of requiredWebAssets) assert.ok(gradle.includes(`"${asset}"`), 
 assert.match(gradle, /tasks\.named\("preBuild"\)[\s\S]*dependsOn\(syncWebAssets\)/);
 assert.match(gradle, /compileSdk\s*=\s*35/);
 assert.match(gradle, /minSdk\s*=\s*23/);
+assert.match(gradle, /targetSdk\s*=\s*35/);
 assert.match(gradle, /sourceCompatibility\s*=\s*JavaVersion\.VERSION_17/);
 assert.match(gradle, /targetCompatibility\s*=\s*JavaVersion\.VERSION_17/);
 assert.match(gradle, /jvmTarget\s*=\s*JavaVersion\.VERSION_17\.toString\(\)/);
@@ -25,6 +26,8 @@ assert.match(activity, /https:\/\/appassets\.androidplatform\.net\/assets\/index
 assert.match(activity, /settings\.javaScriptEnabled = true/);
 assert.match(activity, /settings\.allowFileAccess = false/);
 assert.match(activity, /MIXED_CONTENT_NEVER_ALLOW/);
+assert.match(activity, /setOnApplyWindowInsetsListener/);
+assert.match(activity, /consumeSystemWindowInsets\(\)/);
 assert.match(workflow, /runs-on:\s*ubuntu-24\.04/);
 assert.match(workflow, /actions\/checkout@v7/);
 assert.match(workflow, /actions\/setup-java@v6/);

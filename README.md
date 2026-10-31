@@ -33,7 +33,9 @@ The app uses relative URLs and can run from the project subdirectory. GitHub Pag
 
 ## Android app (GitHub Actions build)
 
-The `android/` project wraps the same HTML/CSS/JavaScript game in an Android WebView. Gradle copies the current web app and icons into the APK during `preBuild`, so the packaged game runs locally without a network connection. The wrapper uses AndroidX `WebViewAssetLoader` with a secure app-local HTTPS origin; it does not enable file access or cleartext traffic.
+The `android/` project wraps the same HTML/CSS/JavaScript game in an Android WebView. Gradle copies the current web app and icons into the APK during `preBuild`, so the packaged game runs locally without a network connection. The wrapper uses AndroidX `WebViewAssetLoader` with a secure app-local HTTPS origin; it does not enable file access or cleartext traffic. The native app targets Android API 35 and applies system-bar insets for Android 15's enforced edge-to-edge layout.
+
+A PWA installed from Chrome is browser-managed and does not use this Android project's `targetSdk`; changing the APK target cannot control Android or Play Protect warnings for a Chrome-installed PWA. The API 35 setting applies to the native APK produced by this workflow.
 
 To build and download a test APK without installing Android Studio or the Android SDK locally:
 

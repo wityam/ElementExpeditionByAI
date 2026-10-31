@@ -41,6 +41,17 @@ class MainActivity : Activity() {
             }
             webChromeClient = WebChromeClient()
         }
+        // Android 15 enforces edge-to-edge for apps targeting API 35. Keep the
+        // WebView content clear of status/navigation bars using the system insets.
+        webView.setOnApplyWindowInsetsListener { view, insets ->
+            view.setPadding(
+                insets.systemWindowInsetLeft,
+                insets.systemWindowInsetTop,
+                insets.systemWindowInsetRight,
+                insets.systemWindowInsetBottom
+            )
+            insets.consumeSystemWindowInsets()
+        }
         setContentView(webView)
         webView.loadUrl("https://appassets.androidplatform.net/assets/index.html")
     }

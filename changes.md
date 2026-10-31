@@ -1,5 +1,11 @@
 # Implementation changes
 
+## Android target SDK and Play Protect warning investigation
+- Raised the native Android wrapper's target SDK from 34 to 35 and added system-bar inset padding for Android 15's enforced edge-to-edge layout.
+- Documented that a Chrome-installed PWA is browser-managed and does not use this project's native APK `targetSdk`; the native build change cannot by itself resolve Play Protect warnings for a PWA. Updated `skill.md` with the verified GitHub Actions Android build workflow and JVM target lessons.
+- Extended Android integration assertions for target SDK 35 and inset handling. Android APK compilation still requires a new GitHub Actions run.
+
+
 ## Android JVM target mismatch fix
 - Fixed `compileDebugKotlin` compatibility failure by explicitly targeting Java 17 for both Java source/bytecode and Kotlin bytecode, matching the JDK used in GitHub Actions.
 - Extended the Android integration test to assert matching Java/Kotlin JVM targets. Local Android compilation remains unavailable without SDK/Gradle; CI must confirm the APK build.
