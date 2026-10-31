@@ -1,5 +1,11 @@
 # Implementation changes
 
+## PWA deployment packaging
+- Added `manifest.webmanifest` with standalone display, relative base-path URLs, app metadata, and SVG plus 192px/512px PNG icons (512px maskable); linked install metadata and an Apple touch PNG from the page.
+- Added secure-context service-worker registration (`https:` and localhost) and a versioned cache-first app shell for offline use. Navigations use network-first with cached app-shell fallback; old app cache versions are cleaned up on activation.
+- Added `README.md` with static-host deployment prerequisites, MIME types, subdirectory support, HTTPS requirements, offline behavior, and cache-version update instructions.
+- Added automated PWA checks for manifest/icon validity, registration conditions, app-shell coverage, and offline navigation fallback. PNG artwork was visually inspected.
+
 ## Initial design → structure and styling
 - Implemented the single-page welcome, quiz, field guide, and results views using semantic HTML, responsive CSS, visible focus states, live feedback, and reduced-motion support.
 - Kept the field-lab visual direction, replacing decorative image dependencies with CSS and text-based motifs.
