@@ -1,5 +1,12 @@
 # Implementation changes
 
+## Android wrapper
+- Added a standalone Kotlin/Gradle Android project that wraps the web game in a full-screen WebView using AndroidX `WebViewAssetLoader` on its app-local HTTPS origin. File access, cleartext traffic, and mixed content remain disabled.
+- Added a `preBuild` Gradle sync task to package the current HTML, CSS, JavaScript, manifest, and icons directly into the APK, keeping Android content aligned with the web app and available offline.
+- Added density-specific Android launcher icons, a GitHub Actions workflow that builds and uploads a debug APK, and README instructions for obtaining/testing the CI artifact. Release signing is intentionally out of scope.
+- Added a Node integration check for asset sync coverage, WebView security settings, launcher resources, and workflow configuration. Android SDK/Gradle are not installed locally, so an actual APK build must be verified by GitHub Actions; CI explicitly installs API 35 and Build Tools 35.0.0.
+
+
 ## PWA deployment packaging
 - Added `manifest.webmanifest` with standalone display, relative base-path URLs, app metadata, and SVG plus 192px/512px PNG icons (512px maskable); linked install metadata and an Apple touch PNG from the page.
 - Added secure-context service-worker registration (`https:` and localhost) and a versioned cache-first app shell for offline use. Navigations use network-first with cached app-shell fallback; old app cache versions are cleaned up on activation.

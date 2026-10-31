@@ -31,6 +31,19 @@ GitHub Pages supports this static PWA. To publish a test build:
 
 The app uses relative URLs and can run from the project subdirectory. GitHub Pages provides HTTPS, which is required for service-worker registration, installation, and offline caching. After the first successful load, test offline mode by disconnecting the network and reloading. When testing updates, increment `CACHE_NAME` in `service-worker.js` before publishing so the service worker replaces its cached app shell.
 
+## Android app (GitHub Actions build)
+
+The `android/` project wraps the same HTML/CSS/JavaScript game in an Android WebView. Gradle copies the current web app and icons into the APK during `preBuild`, so the packaged game runs locally without a network connection. The wrapper uses AndroidX `WebViewAssetLoader` with a secure app-local HTTPS origin; it does not enable file access or cleartext traffic.
+
+To build and download a test APK without installing Android Studio or the Android SDK locally:
+
+1. Push the branch to GitHub.
+2. Open the repository’s **Actions** tab and select **Build Android APK** (or let it run after a push or pull request).
+3. Open the successful workflow run and download the `element-expedition-android-debug` artifact.
+4. Unzip the artifact and install `app-debug.apk` on an Android device or emulator. You may need to allow installation from that download source.
+
+This workflow produces an unsigned **debug APK** for testing, not a Play Store release. A release build should use a securely stored signing key and separate release workflow. Android project settings are in `android/`; CI runs `gradle -p android :app:assembleDebug` using JDK 17 and Gradle 8.10.2.
+
 ## Install and offline behavior
 
 The web app manifest provides standalone display settings and SVG/PNG icons. After the app shell loads, the service worker caches HTML, CSS, JavaScript, manifest, and icons. Navigations use the network first, then the cached app shell when offline; same-origin app resources use cache first and are cached after a successful fetch. A later service-worker version removes older `element-expedition-*` caches.
